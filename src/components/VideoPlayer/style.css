@@ -1,0 +1,8 @@
+.video-player {
+  background-color: #1D2235;
+  box-shadow: 0 3px 20px rgba(20, 20, 20, 0.1);
+}
+
+.video-player__detail {
+  padding: 20px;
+}
