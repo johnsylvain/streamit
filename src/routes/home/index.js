@@ -4,6 +4,7 @@ import style from './style'
 
 import VideoPlayer from '../../components/VideoPlayer'
 import VideoQueue from '../../components/VideoQueue'
+import Comments from '../../components/Comments'
 
 function unEntity (str) {
 	return str
@@ -26,27 +27,46 @@ export default class Home extends Component {
 
 	componentWillMount () {
 		const { subreddit, defaultSubreddit } = this.props
-		fetch(`https://www.reddit.com/r/${subreddit || defaultSubreddit}/hot.json?limit=100&after=`)
+		const baseUrl = `https://www.reddit.com/r/${subreddit || defaultSubreddit}/`
+
+		fetch(`${baseUrl}hot.json?limit=100&after=`)
 			.then(res => res.json())
-			.then(json => {
-				console.log(json.data.children)
-				const videos = json.data.children
+			.then(json => {				
+				const videoCommentsPromise = json.data.children
 					.filter(v => !v.data.over_18)
-					.map(item => ({
-						meta: {
-							author: item.data.author,
-							score: item.data.score,
-							title: item.data.title,
-							permalink: item.data.permalink,
-							created: item.data.created_utc * 1000,
-							_id: item.data.id
-						},
-						media: {
-							iframe: unEntity(item.data.media_embed.content|| ''),
-							thumbnail: item.data.thumbnail
-						}
-					}))
-				this.setState({ videos })
+					.map(v => 
+						fetch(`${baseUrl}${v.data.id}/.json`)
+							.then(res => res.json())
+					)
+				const videoComments = Promise.all(videoCommentsPromise)
+					.then(details => {
+						const detailsMap = details.reduce((acc, cur) => {
+							acc[cur[0].data.children[0].data.id] = cur[1].data.children[1]
+								? cur[1].data.children[1].data
+								: {}
+							return acc
+						}, {})
+
+						const videos = json.data.children
+							.map((item, i) => ({
+								meta: {
+									author: item.data.author,
+									score: item.data.score,
+									title: item.data.title,
+									permalink: item.data.permalink,
+									created: item.data.created_utc * 1000,
+									_id: item.data.id
+								},
+								comments: detailsMap[item.data.id],
+								media: {
+									iframe: unEntity(item.data.media_embed.content|| ''),
+									thumbnail: item.data.thumbnail
+								}
+							}))
+						console.log(videos)
+
+						this.setState({ videos })
+					})
 			})
 	}
 
@@ -81,6 +101,7 @@ export default class Home extends Component {
 					? (
 						<div class={style.home}>
 							<VideoPlayer video={this.state.videos[this.state.pointer]} />
+							<Comments />
 							<VideoQueue 
 								{...this.state}
 								handleClick={(p) => this.changeVideo(p)}/>
