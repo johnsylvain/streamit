@@ -85,7 +85,7 @@ export default class Home extends Component {
 						<div>
 							<VideoPlayer video={this.state.videos[this.state.pointer]} />
 							<VideoQueue 
-								videos={this.state.videos} 
+								{...this.state}
 								handleClick={(p) => this.changeVideo(p)} />
 						</div>
 					)
