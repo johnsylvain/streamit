@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import style from './style.css'
+import style from './style.scss'
 
 const ProgressBar = ({ current, total }) =>
   <div class={style.progress}>

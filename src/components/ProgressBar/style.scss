@@ -1,0 +1,12 @@
+.progress {
+  width: 100%;
+  margin-bottom: -3px;
+  position: relative;
+  z-index: 100;
+  
+  > div {
+    height: 3px;
+    background-color: #E88B81;
+    transition: width 0.2s ease;
+  }
+}

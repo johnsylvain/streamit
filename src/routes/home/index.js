@@ -1,5 +1,6 @@
-import { h, Component } from 'preact';
-import style from './style';
+import { h, Component } from 'preact'
+
+import style from './style'
 
 import VideoPlayer from '../../components/VideoPlayer'
 import VideoQueue from '../../components/VideoQueue'
@@ -24,7 +25,8 @@ export default class Home extends Component {
 	}
 
 	componentWillMount () {
-		fetch(`https://www.reddit.com/r/${this.props.subreddit}/hot.json?limit=100&after=`)
+		const { subreddit, defaultSubreddit } = this.props
+		fetch(`https://www.reddit.com/r/${subreddit || defaultSubreddit}/hot.json?limit=100&after=`)
 			.then(res => res.json())
 			.then(json => {
 				console.log(json.data.children)
@@ -74,19 +76,14 @@ export default class Home extends Component {
 
 	render ({ subreddit }, { defaultSubreddit }) {
 		return (
-			<div class={style.home}>
-				<header class={style.header}>
-					<h1>Streamit</h1>
-					<button onClick={this.changeVideo('prev')}>prev</button>
-					<button onClick={this.changeVideo('next')}>next</button>
-				</header>
+			<div>
 				{this.state.videos
 					? (
-						<div>
+						<div class={style.home}>
 							<VideoPlayer video={this.state.videos[this.state.pointer]} />
 							<VideoQueue 
 								{...this.state}
-								handleClick={(p) => this.changeVideo(p)} />
+								handleClick={(p) => this.changeVideo(p)}/>
 						</div>
 					)
 					: 'Loading'
