@@ -1,8 +1,35 @@
 .video-player {
   background-color: #1D2235;
-  box-shadow: 0 3px 20px rgba(20, 20, 20, 0.1);
+  box-shadow: 0 0 20px rgba(20, 20, 20, 0.2);
+  margin-bottom: 20px;
 }
 
 .video-player__detail {
   padding: 20px;
+  line-height: 150%;
+}
+
+.video-player__detail p {
+  color: #A5A7AE;
+  font-size: 0.8rem;
+}
+
+.video-player__detail strong {
+  color: rgb(185, 187, 194);
+  font-weight: bold;
+}
+
+.video-player__video {
+  position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 25px;
+	height: 0;
+}
+
+.video-player__video iframe {
+  position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%
 }

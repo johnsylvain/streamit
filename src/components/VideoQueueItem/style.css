@@ -1,0 +1,9 @@
+.video-queue-item {
+  padding: 15px 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.video-queue-item:hover {
+  background: rgba(0, 0, 0, 0.1);
+}

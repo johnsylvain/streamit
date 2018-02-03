@@ -2,9 +2,9 @@ import { h, Component } from 'preact';
 import style from './style';
 
 import VideoPlayer from '../../components/VideoPlayer'
+import VideoQueue from '../../components/VideoQueue'
 
-function unEntity(str){
-	console.log(str)
+function unEntity (str) {
 	return str
 		.replace(/&amp;/g, "&")
 		.replace(/&lt;/g, "<")
@@ -12,10 +12,15 @@ function unEntity(str){
 }
 
 export default class Home extends Component {
-	constructor(props) {
+	constructor (props) {
 		super(props)
 
-		console.log(props)
+		this.state = {
+			videos: null,
+			pointer: 0
+		}
+
+		this.changeVideo = this.changeVideo.bind(this)
 	}
 
 	componentWillMount () {
@@ -31,7 +36,8 @@ export default class Home extends Component {
 							score: item.data.score,
 							title: item.data.title,
 							permalink: item.data.permalink,
-							created: item.data.created
+							created: item.data.created_utc * 1000,
+							_id: item.data.id
 						},
 						media: {
 							iframe: unEntity(item.data.media_embed.content|| ''),
@@ -42,14 +48,49 @@ export default class Home extends Component {
 			})
 	}
 
-	render({ subreddit }, { defaultSubreddit }) {
+	changeVideo = (direction) => () => {
+		switch (direction) {
+			case 'next':
+				this.setState({
+					pointer: (this.state.pointer < this.state.videos.length)
+						? this.state.pointer + 1
+						: this.state.pointer
+				})
+				break
+			case 'prev':
+				this.setState({
+					pointer: (this.state.pointer > 0)
+						? this.state.pointer - 1
+						: 0
+				})
+				break 
+			default:
+				this.setState({
+					pointer: direction
+				})
+				break
+		}
+	}
+
+	render ({ subreddit }, { defaultSubreddit }) {
 		return (
 			<div class={style.home}>
+				<header class={style.header}>
+					<h1>Streamit</h1>
+					<button onClick={this.changeVideo('prev')}>prev</button>
+					<button onClick={this.changeVideo('next')}>next</button>
+				</header>
 				{this.state.videos
-					? <VideoPlayer video={this.state.videos[0]} />
+					? (
+						<div>
+							<VideoPlayer video={this.state.videos[this.state.pointer]} />
+							<VideoQueue 
+								videos={this.state.videos} 
+								handleClick={(p) => this.changeVideo(p)} />
+						</div>
+					)
 					: 'Loading'
 				}
-				<pre>{JSON.stringify(this.state.videos, null, '  ')}</pre>
 			</div>
 		);
 	}

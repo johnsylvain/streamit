@@ -1,0 +1,14 @@
+.video-queue {
+  background-color: #1D2235;
+  box-shadow: 0 0 20px rgba(20, 20, 20, 0.2);
+}
+
+.video-queue__header {
+  padding: 20px;
+  background: #1A2030;
+}
+
+.video-queue__queue {
+  max-height: 300px;
+  overflow-y: scroll;
+}
