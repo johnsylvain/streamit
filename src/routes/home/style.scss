@@ -4,3 +4,11 @@
 	grid-template-columns: 2fr 1fr;
 	grid-gap: 10px;
 }
+
+.interstitial {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

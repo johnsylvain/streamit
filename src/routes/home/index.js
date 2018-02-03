@@ -5,6 +5,7 @@ import style from './style'
 import VideoPlayer from '../../components/VideoPlayer'
 import VideoQueue from '../../components/VideoQueue'
 import Comments from '../../components/Comments'
+import Loader from '../../components/Loader'
 
 function unEntity (str) {
 	return str
@@ -18,7 +19,7 @@ export default class Home extends Component {
 		super(props)
 
 		this.state = {
-			videos: null,
+			videos: [],
 			pointer: 0
 		}
 
@@ -40,12 +41,12 @@ export default class Home extends Component {
 					)
 				const videoComments = Promise.all(videoCommentsPromise)
 					.then(details => {
-						const detailsMap = details.reduce((acc, cur) => {
-							acc[cur[0].data.children[0].data.id] = cur[1].data.children[1]
+						const detailsMap = details.reduce((acc, cur) => ({
+							...acc,
+							[cur[0].data.children[0].data.id]: (cur[1].data.children[1])
 								? cur[1].data.children[1].data
 								: {}
-							return acc
-						}, {})
+						}), {})
 
 						const videos = json.data.children
 							.map((item, i) => ({
@@ -63,7 +64,6 @@ export default class Home extends Component {
 									thumbnail: item.data.thumbnail
 								}
 							}))
-						console.log(videos)
 
 						this.setState({ videos })
 					})
@@ -90,24 +90,28 @@ export default class Home extends Component {
 				this.setState({
 					pointer: direction
 				})
-				break
 		}
+		console.log(this.state.videos[this.state.pointer].comments)
 	}
 
-	render ({ subreddit }, { defaultSubreddit }) {
+	render () {
 		return (
 			<div>
-				{this.state.videos
+				{this.state.videos.length
 					? (
 						<div class={style.home}>
 							<VideoPlayer video={this.state.videos[this.state.pointer]} />
-							<Comments />
+							<Comments comments={this.state.videos[this.state.pointer].comments}/>
 							<VideoQueue 
 								{...this.state}
 								handleClick={(p) => this.changeVideo(p)}/>
 						</div>
 					)
-					: 'Loading'
+					: (
+						<div className={style.interstitial}>
+							<Loader />
+						</div>
+					)
 				}
 			</div>
 		);

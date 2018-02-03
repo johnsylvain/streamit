@@ -11,6 +11,8 @@ export default class VideoQueue extends Component {
       <div className={style['video-queue']}>
         <div className={style['video-queue__header']}>
           <p>Queue</p>
+          <button onClick={this.props.handleClick('prev')}>prev</button>
+          <button onClick={this.props.handleClick('next')}>next</button>
         </div>
         <ProgressBar current={this.props.pointer} total={this.props.videos.length}/>
         <div className={style['video-queue__queue']}>

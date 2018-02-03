@@ -11,3 +11,25 @@
     padding: 20px;
   }
 }
+
+.comment {
+  small {
+    color: #A5A7AE;
+    font-size: 0.8rem;
+
+    strong {
+      color: rgb(185, 187, 194);
+      font-weight: bold;
+    }
+  }
+
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  
+  .comment__body {
+    padding: 10px;
+  }
+
+  .comment_children {
+    margin-left: 20px;
+  }
+}
