@@ -97,7 +97,7 @@ export default class Home extends Component {
 		}
 	}
 
-	render () {
+	render ({ subreddit}, { defaultSubreddit }) {
 		return this.state.videos.length
 			? (
 				<div className={style.home}>
@@ -108,6 +108,7 @@ export default class Home extends Component {
 						<VideoPlayer video={this.state.videos[this.state.pointer]} />
 						<VideoQueue 
 							{...this.state}
+							subreddit={subreddit || defaultSubreddit}
 							handleClick={(p) => this.changeVideo(p)}/>
 					</div>
 					<footer>

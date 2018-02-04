@@ -1,14 +1,38 @@
-.video-queue {
+.queue {
   background-color: #1D2235;
   box-shadow: 0 0 20px rgba(20, 20, 20, 0.2);
 }
 
-.video-queue__header {
+.header {
   padding: 20px;
   background: #1A2030;
+  line-height: 130%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  small {
+    font-size: 0.8rem;
+  }
+
+  button {
+    background: none;
+    outline: 0;
+    border: 0;
+    color: white;
+    font-size: 1.6rem;
+    cursor: pointer;
+    opacity: 0.7;
+    margin-left: 10px;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+  }
 }
 
 .video-queue__queue {
-  max-height: 490px;
+  max-height: 470px;
   overflow-y: scroll;
 }

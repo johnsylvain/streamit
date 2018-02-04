@@ -8,11 +8,20 @@ import style from './style'
 export default class VideoQueue extends Component {
   render () {
     return (
-      <div className={style['video-queue']}>
-        <div className={style['video-queue__header']}>
-          <p>Queue</p>
-          <button onClick={this.props.handleClick('prev')}>prev</button>
-          <button onClick={this.props.handleClick('next')}>next</button>
+      <div className={style.queue}>
+        <div className={style.header}>
+          <div>
+            <p>Queue</p>
+            <small>{`/r/${this.props.subreddit}`} - {`${this.props.pointer + 1} / ${this.props.videos.length}`}</small>
+          </div>
+          <div>
+            <button 
+              onClick={this.props.handleClick('prev')}
+              disabled={this.props.pointer === 0}>❮</button>
+            <button 
+              onClick={this.props.handleClick('next')}
+              disabled={this.props.pointer === this.props.videos.length - 1}>❯</button>
+          </div>
         </div>
         <ProgressBar current={this.props.pointer} total={this.props.videos.length}/>
         <div className={style['video-queue__queue']}>
