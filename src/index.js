@@ -15,6 +15,7 @@ export default class App extends Component {
 			<div id="app">
 				<Router onChange={this.handleRoute}>
 					<Redirect path="/" to="/r/videos" />
+					<Redirect path="/r" to="/r/videos" />
 					<Home path="/r/:subreddit" defaultSubreddit="videos"/>
 				</Router>
 			</div>

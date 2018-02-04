@@ -10,6 +10,7 @@
   justify-content: space-between;
   flex-direction: row;
   align-items: stretch;
+  position: relative;
 
   > div:first-child {
     flex: 1;
@@ -18,16 +19,12 @@
   h3 {
     white-space: nowrap;
     position: relative;
-    max-width: 600px;
+    max-width: 700px;
     overflow: hidden;
 
     a {
-      color: inherit;
+      color: white;
       text-decoration: none;
-    }
-
-    &:hover {
-      text-decoration: underline;
     }
 
     &:after {
@@ -37,8 +34,17 @@
       right: 0;
       width: 30%;
       height: 100%;
-      background: linear-gradient(left, rgba(#1D2235,0) 0%, #1D2235 80%, #1D2235 100%);
+      background: linear-gradient(to right, rgba(#1D2235,0) 0%, #1D2235 80%, #1D2235 100%);
       pointer-events: none;
+    }
+
+    &:hover {
+      overflow: auto;
+      white-space: inherit;
+
+      &:after {
+        background: transparent;
+      }
     }
   }
 
@@ -58,6 +64,7 @@
 	padding-bottom: 56.25%;
 	padding-top: 25px;
   height: 0;
+  background: rgb(39, 45, 70);
   
   iframe {
     position: absolute;
