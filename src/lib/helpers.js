@@ -1,8 +1,8 @@
 export function unEntity (str) {
-	return str
-		.replace(/&amp;/g, "&")
-		.replace(/&lt;/g, "<")
-		.replace(/&gt;/g, ">")
+  return str
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
 }
 
 export function truncate (str, n) {
