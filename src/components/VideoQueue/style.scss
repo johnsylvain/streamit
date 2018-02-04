@@ -13,6 +13,7 @@
 
   small {
     font-size: 0.8rem;
+    opacity: 0.7;
   }
 
   button {
@@ -33,6 +34,6 @@
 }
 
 .list {
-  max-height: 470px;
+  max-height: 480px;
   overflow-y: scroll;
 }

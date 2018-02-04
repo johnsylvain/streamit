@@ -42,7 +42,7 @@ export default class Home extends Component {
 							_id: item.data.id
 						},
 						media: {
-							iframe: unEntity(item.data.media_embed.content|| ''),
+							iframe: unEntity(item.data.media_embed.content || ''),
 							thumbnail: item.data.thumbnail
 						}
 					}))
