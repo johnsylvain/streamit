@@ -1,6 +1,7 @@
-# {{ name }}
+# Streamit
+> Easily watch all video content from your favorite subreddits
 
-## CLI Commands
+## Development
 
 ``` bash
 # install dependencies
