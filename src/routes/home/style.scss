@@ -5,7 +5,36 @@
 
 	header {
 		padding: 30px 0;
-		font-size: 2rem;
+		display: flex;
+		align-items: center;
+		
+		h1 {
+			font-size: 1rem;
+			text-transform: uppercase;
+			background-color: aquamarine;
+			padding: 5px;
+			color: #151A2D;
+			margin-right: 1rem;
+			font-weight: bold; 
+		}
+
+		form {
+			
+			&, * { 
+				font-size: 0.9rem;
+				font-weight: bold;
+				color: white;				
+			}
+
+			input {
+				font-family: inherit;
+				background: none;
+				outline: 0;
+				border: 0;
+				padding: 0;
+				margin: 0;
+			}
+		}
 	}
 
 	footer {
@@ -22,6 +51,12 @@
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	grid-gap: 10px;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+		grid-template-columns: 1fr;
+  }
 }
 
 .interstitial {

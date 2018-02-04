@@ -1,11 +1,11 @@
 import { h, Component } from 'preact'
+import { route } from 'preact-router'
 
 import style from './style'
 import { unEntity } from '../../lib/helpers'
 
 import VideoPlayer from '../../components/VideoPlayer'
 import VideoQueue from '../../components/VideoQueue'
-import Comments from '../../components/Comments'
 import Loader from '../../components/Loader'
 
 export default class Home extends Component {
@@ -14,13 +14,19 @@ export default class Home extends Component {
 
 		this.state = {
 			videos: [],
-			pointer: 0
+			pointer: 0,
+			input: props.subreddit || props.defaultSubreddit
 		}
 
 		this.changeVideo = this.changeVideo.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
 	componentWillMount () {
+		this.getVideos()
+	}
+
+	getVideos () {
 		const { subreddit, defaultSubreddit } = this.props
 		const baseUrl = `https://www.reddit.com/r/${subreddit || defaultSubreddit}/`
 
@@ -47,7 +53,10 @@ export default class Home extends Component {
 						}
 					}))
 
-				this.setState({ videos })
+				this.setState({ 
+					videos,
+					pointer: 0
+				})
 			})
 	}
 
@@ -73,13 +82,28 @@ export default class Home extends Component {
 				})
 		}
 	}
+	
+	handleSubmit (e) {
+		e.preventDefault()
 
-	render ({ subreddit}, { defaultSubreddit }) {
+		route(`/r/${e.target.subreddit.value}`, false)
+
+		this.getVideos()
+	}
+
+	render ({ subreddit }, { defaultSubreddit }) {
 		return this.state.videos.length
 			? (
 				<div className={style.home}>
 					<header>
 						<h1>Streamit</h1>
+						<form onSubmit={this.handleSubmit}>
+							/r/<input
+								type='text'
+								name='subreddit'
+								autocomplete='off'
+								defaultValue={subreddit || defaultSubreddit}/>
+						</form>
 					</header>
 					<div className={style.grid}>
 						<VideoPlayer video={this.state.videos[this.state.pointer]} />
