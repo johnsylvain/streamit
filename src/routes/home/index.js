@@ -1,18 +1,12 @@
 import { h, Component } from 'preact'
 
 import style from './style'
+import { unEntity } from '../../lib/helpers'
 
 import VideoPlayer from '../../components/VideoPlayer'
 import VideoQueue from '../../components/VideoQueue'
 import Comments from '../../components/Comments'
 import Loader from '../../components/Loader'
-
-function unEntity (str) {
-	return str
-		.replace(/&amp;/g, "&")
-		.replace(/&lt;/g, "<")
-		.replace(/&gt;/g, ">")
-}
 
 export default class Home extends Component {
 	constructor (props) {
@@ -37,40 +31,23 @@ export default class Home extends Component {
 					.filter(c => !c.data.stickied)
 					.filter(c => !c.data.over_18)
 
-				const videoCommentsPromise = children
-					.map(v => 
-						fetch(`${baseUrl}${v.data.id}.json`)
-							.then(res => res.json())
-					)
-				const videoComments = Promise.all(videoCommentsPromise)
-					.then(details => {
-						const detailsMap = details.reduce((acc, cur) => ({
-							...acc,
-							[cur[0].data.children[0].data.id]: (cur[1].data.children[1])
-								? cur[1].data.children[1].data
-								: {}
-						}), {})
+				const videos = children					
+					.map((item, i) => ({
+						meta: {
+							author: item.data.author,
+							score: item.data.score,
+							title: item.data.title,
+							permalink: item.data.permalink,
+							created: item.data.created_utc * 1000,
+							_id: item.data.id
+						},
+						media: {
+							iframe: unEntity(item.data.media_embed.content|| ''),
+							thumbnail: item.data.thumbnail
+						}
+					}))
 
-						const videos = children					
-							.map((item, i) => ({
-								meta: {
-									author: item.data.author,
-									score: item.data.score,
-									title: item.data.title,
-									permalink: item.data.permalink,
-									created: item.data.created_utc * 1000,
-									_id: item.data.id
-								},
-								comments: detailsMap[item.data.id],
-								media: {
-									iframe: unEntity(item.data.media_embed.content|| ''),
-									thumbnail: item.data.thumbnail
-								}
-							}))
-						console.log(videos)
-
-						this.setState({ videos })
-					})
+				this.setState({ videos })
 			})
 	}
 

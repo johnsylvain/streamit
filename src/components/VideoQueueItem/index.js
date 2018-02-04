@@ -14,7 +14,7 @@ const VideoQueueItem = (props) =>
       <img src={props.image || '/assets/placeholder.svg'}/>
     </div>
     <div className={style.details}>
-      <p>{trunc(props.title, 30)}</p>
+      <p>{truncate(props.title, 30)}</p>
       <p>{props.author}</p>
     </div>
   </div>
