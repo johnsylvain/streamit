@@ -24,7 +24,7 @@ export default class VideoQueue extends Component {
           </div>
         </div>
         <ProgressBar current={this.props.pointer} total={this.props.videos.length}/>
-        <div className={style['video-queue__queue']}>
+        <div className={style.list}>
           {this.props.videos.map((video, i) =>
             <VideoQueueItem 
               title={video.meta.title}
