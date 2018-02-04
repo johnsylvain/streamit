@@ -2,11 +2,24 @@ import { h } from 'preact'
 
 import style from './style.scss'
 
+function trunc (str, n) {
+  return (str.length > n) ? str.substr(0, n-1) + '...' : str;
+}
+
 const VideoQueueItem = (props) =>
   <div 
-    class={style["video-queue-item"]}
+    className={style.item}
     onClick={props.handleClick}>
-    {props.title}
+    <div>
+      {props.active ? '▶' : props.i}
+    </div>
+    <div className={style.background}>
+      <img src={props.image || '/assets/placeholder.svg'}/>
+    </div>
+    <div className={style.details}>
+      <p>{trunc(props.title, 30)}</p>
+      <p>{props.author}</p>
+    </div>
   </div>
 
 export default VideoQueueItem

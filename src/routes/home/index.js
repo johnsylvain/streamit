@@ -32,11 +32,14 @@ export default class Home extends Component {
 
 		fetch(`${baseUrl}hot.json?limit=100&after=`)
 			.then(res => res.json())
-			.then(json => {				
-				const videoCommentsPromise = json.data.children
-					.filter(v => !v.data.over_18)
+			.then(json => {
+				const children = json.data.children
+					.filter(c => !c.data.stickied)
+					.filter(c => !c.data.over_18)
+
+				const videoCommentsPromise = children
 					.map(v => 
-						fetch(`${baseUrl}${v.data.id}/.json`)
+						fetch(`${baseUrl}${v.data.id}.json`)
 							.then(res => res.json())
 					)
 				const videoComments = Promise.all(videoCommentsPromise)
@@ -48,7 +51,7 @@ export default class Home extends Component {
 								: {}
 						}), {})
 
-						const videos = json.data.children
+						const videos = children					
 							.map((item, i) => ({
 								meta: {
 									author: item.data.author,
@@ -64,6 +67,7 @@ export default class Home extends Component {
 									thumbnail: item.data.thumbnail
 								}
 							}))
+						console.log(videos)
 
 						this.setState({ videos })
 					})
@@ -91,29 +95,30 @@ export default class Home extends Component {
 					pointer: direction
 				})
 		}
-		console.log(this.state.videos[this.state.pointer].comments)
 	}
 
 	render () {
-		return (
-			<div>
-				{this.state.videos.length
-					? (
-						<div class={style.home}>
-							<VideoPlayer video={this.state.videos[this.state.pointer]} />
-							<Comments comments={this.state.videos[this.state.pointer].comments}/>
-							<VideoQueue 
-								{...this.state}
-								handleClick={(p) => this.changeVideo(p)}/>
-						</div>
-					)
-					: (
-						<div className={style.interstitial}>
-							<Loader />
-						</div>
-					)
-				}
-			</div>
-		);
+		return this.state.videos.length
+			? (
+				<div className={style.home}>
+					<header>
+						<h1>Streamit</h1>
+					</header>
+					<div className={style.grid}>
+						<VideoPlayer video={this.state.videos[this.state.pointer]} />
+						<VideoQueue 
+							{...this.state}
+							handleClick={(p) => this.changeVideo(p)}/>
+					</div>
+					<footer>
+						John Sylvain &copy; {new Date().getFullYear()}
+					</footer>
+				</div>
+			)
+			: (
+				<div className={style.interstitial}>
+					<Loader />
+				</div>
+			)
 	}
 }

@@ -1,10 +1,28 @@
-.video-queue-item {
-  padding: 15px 20px;
+.item {
   cursor: pointer;
-  font-size: 0.9rem;
-
+  font-size: 0.8rem;
+  display: grid;
+  grid-template-columns: 20px 80px 1fr;
+  grid-gap: 8px;
+  padding: 5px;
+  
+  img {
+    width: 100%;
+  }
+  
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  div:first-child {
+    justify-self: center;
+    align-self: center;
+  }
 }
 
-.video-queue-item:hover {
-  background: rgba(0, 0, 0, 0.1);
+.details {
+  p:first-child {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
 }

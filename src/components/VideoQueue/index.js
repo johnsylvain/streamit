@@ -19,7 +19,10 @@ export default class VideoQueue extends Component {
           {this.props.videos.map((video, i) =>
             <VideoQueueItem 
               title={video.meta.title}
+              image={video.media.thumbnail}
               key={video.meta._id}
+              i={i+1}
+              author={video.meta.author}
               active={this.props.pointer === i}
               handleClick={this.props.handleClick(i)} />
           )}
