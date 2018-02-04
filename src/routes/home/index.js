@@ -36,6 +36,7 @@ export default class Home extends Component {
         const children = json.data.children
           .filter(c => !c.data.stickied)
           .filter(c => !c.data.over_18)
+          .filter(c => c.data.post_hint === 'rich:video')
 
         const videos = children					
           .map((item, i) => ({
@@ -53,10 +54,13 @@ export default class Home extends Component {
             }
           }))
 
-        this.setState({ 
+        this.setState({
           videos,
           pointer: 0
         })
+      })
+      .catch(() => {
+        route('/404', true)
       })
   }
 

@@ -3,6 +3,7 @@ import { Router } from 'preact-router'
 
 import './style';
 import Home from './routes/home'
+import NotFound from './routes/404'
 import Redirect from './components/Redirect'
 
 if (module.hot) {
@@ -13,12 +14,13 @@ export default class App extends Component {
   render() {
     return (
       <div id="app">
-        <Router onChange={this.handleRoute}>
+        <Router>
+          <NotFound path="/404" />
           <Redirect path="/" to="/r/videos" />
           <Redirect path="/r" to="/r/videos" />
           <Home path="/r/:subreddit" defaultSubreddit="videos"/>
         </Router>
       </div>
-    );
+    )
   }
 }
