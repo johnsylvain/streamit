@@ -33,7 +33,8 @@ export default class Home extends Component {
         <Header />
         <div className={style.feature}>
           <div className={style.cta}>
-            <h3>Stream video content from your favorite subreddits.</h3>
+            <h3>Welcome to streamit.</h3>
+            <p>Stream video content from your favorite subreddits.</p>
             <form className={style.form} onSubmit={this.handleSubmit}>
               <input
                 type="text"
@@ -43,7 +44,7 @@ export default class Home extends Component {
             </form>
           </div>
           <div>
-            <h3>Popular</h3>
+            <h4>Popular</h4>
             <div className={style.grid}>
               {this.state.popular.map(channel =>
                 <div onClick={() => this.changeRoute(channel)} className={style.channel}>
