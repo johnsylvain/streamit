@@ -2,6 +2,7 @@ import { h, Component } from 'preact'
 import { Router } from 'preact-router'
 
 import './style';
+import Player from './routes/player'
 import Home from './routes/home'
 import NotFound from './routes/404'
 import Redirect from './components/Redirect'
@@ -15,10 +16,10 @@ export default class App extends Component {
     return (
       <div id="app">
         <Router>
-          <NotFound path="/404" />
-          <Redirect path="/" to="/r/videos" />
           <Redirect path="/r" to="/r/videos" />
-          <Home path="/r/:subreddit" defaultSubreddit="videos"/>
+          <NotFound path="/404" />
+          <Home path="/" />
+          <Player path="/r/:subreddit" defaultSubreddit="videos"/>
         </Router>
       </div>
     )

@@ -1,0 +1,28 @@
+.player {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  > div {
+    flex: 1
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 10px;
+}
+
+@media (max-width: 1020px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.interstitial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
