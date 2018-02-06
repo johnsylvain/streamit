@@ -39,7 +39,7 @@ export default class Player extends Component {
           .filter(c => !c.data.over_18)
           .filter(c => c.data.post_hint === 'rich:video')
 
-        const videos = children					
+        const videos = children
           .map((item, i) => ({
             meta: {
               author: item.data.author,
@@ -82,14 +82,14 @@ export default class Player extends Component {
             ? this.state.pointer - 1
             : 0
         })
-        break 
+        break
       default:
         this.setState({
           pointer: direction
         })
     }
   }
-  
+
   handleSubmit (e) {
     e.preventDefault()
 
@@ -102,12 +102,12 @@ export default class Player extends Component {
     return this.state.videos.length
       ? (
         <div className={style.player}>
-          <Header 
+          <Header
             handleSubmit={this.handleSubmit}
             subreddit={subreddit || defaultSubreddit}/>
           <div className={style.grid}>
             <VideoPlayer video={this.state.videos[this.state.pointer]} />
-            <VideoQueue 
+            <VideoQueue
               {...this.state}
               subreddit={subreddit || defaultSubreddit}
               handleClick={(p) => this.changeVideo(p)}/>

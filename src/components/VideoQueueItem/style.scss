@@ -5,15 +5,15 @@
   grid-template-columns: 20px 80px 1fr;
   grid-gap: 8px;
   padding: 5px;
-  
+
   img {
     width: 100%;
   }
-  
+
   &:hover {
     background: rgba(0, 0, 0, 0.1);
   }
-  
+
   div:first-child {
     justify-self: center;
     align-self: center;
