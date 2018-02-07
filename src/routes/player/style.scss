@@ -1,12 +1,12 @@
-.player {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+// .player {
+//   display: flex;
+//   flex-direction: column;
+//   min-height: 100vh;
 
-  > div {
-    flex: 1
-  }
-}
+//   > div {
+//     flex: 1
+//   }
+// }
 
 .grid {
   display: grid;
@@ -22,7 +22,6 @@
 
 .interstitial {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  margin: 0 auto;
+  align-self: center;
 }

@@ -6,8 +6,7 @@ import { unEntity } from '../../lib/helpers'
 import VideoPlayer from '../../components/VideoPlayer'
 import VideoQueue from '../../components/VideoQueue'
 import Loader from '../../components/Loader'
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Page from '../../components/Page'
 
 export default class Player extends Component {
   constructor (props) {
@@ -18,9 +17,6 @@ export default class Player extends Component {
       pointer: 0,
       input: props.subreddit || props.defaultSubreddit
     }
-
-    this.changeVideo = this.changeVideo.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentWillMount () {
@@ -90,35 +86,26 @@ export default class Player extends Component {
     }
   }
 
-  handleSubmit (e) {
-    e.preventDefault()
-
-    route(`/r/${e.target.subreddit.value}`, false)
-
-    this.getVideos()
-  }
-
   render ({ subreddit }, { defaultSubreddit }) {
-    return this.state.videos.length
-      ? (
-        <div className={style.player}>
-          <Header
-            handleSubmit={this.handleSubmit}
-            subreddit={subreddit || defaultSubreddit}/>
-          <div className={style.grid}>
-            <VideoPlayer video={this.state.videos[this.state.pointer]} />
-            <VideoQueue
-              {...this.state}
-              subreddit={subreddit || defaultSubreddit}
-              handleClick={(p) => this.changeVideo(p)}/>
-          </div>
-          <Footer />
-        </div>
-      )
-      : (
-        <div className={style.interstitial}>
-          <Loader />
-        </div>
-      )
+    return (
+      <Page subreddit={subreddit || defaultSubreddit}>
+        {this.state.videos.length
+          ? (
+            <div className={style.grid}>
+              <VideoPlayer video={this.state.videos[this.state.pointer]} />
+              <VideoQueue
+                {...this.state}
+                subreddit={subreddit || defaultSubreddit}
+                handleClick={(p) => this.changeVideo(p)}/>
+            </div>
+          )
+          : (
+            <div className={style.interstitial}>
+              <Loader />
+            </div>
+          )
+        }
+      </Page>
+    )
   }
 }

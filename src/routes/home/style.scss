@@ -1,12 +1,4 @@
 .home {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
-  > div {
-    flex: 1
-  }
-
   h4 {
     font-size: 1.2rem;
     margin: 20px 0;
@@ -43,14 +35,18 @@
 
 .form {
   input {
+    background: #1D2235;
     border: 0;
     outline: 0;
-    background: lighten(#1D2235, 3%);
     font-size: 1rem;
     color: white;
     padding: 15px 20px;
     font-family: inherit;
     width: 400px;
+
+    &:focus {
+      background: lighten(#1D2235, 3%);
+    }
   }
 
   ::-webkit-input-placeholder { /* Chrome/Opera/Safari */

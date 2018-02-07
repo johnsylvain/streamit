@@ -2,6 +2,10 @@
   width: 40px;
   height: 40px;
   background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   border-radius: 100%;
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
@@ -9,20 +13,20 @@
 }
 
 @-webkit-keyframes sk-scaleout {
-  0% { -webkit-transform: scale(0) }
+  0% { -webkit-transform: translate(-50%, -50%) scale(0) }
   100% {
-    -webkit-transform: scale(1.0);
+    -webkit-transform: translate(-50%, -50%) scale(1.0);
     opacity: 0;
   }
 }
 
 @keyframes sk-scaleout {
   0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
   } 100% {
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
+    -webkit-transform: translate(-50%, -50%) scale(1.0);
+    transform: translate(-50%, -50%) scale(1.0);
     opacity: 0;
   }
 }

@@ -6,29 +6,16 @@
   h1 {
     font-size: 1rem;
     text-transform: uppercase;
-    background-color: aquamarine;
-    padding: 5px;
+    background-color: #f5cd79;
+    padding: 5px 8px;
     color: #151A2D;
     margin-right: 1rem;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
   }
 
-  form {
-
-    &, * {
-      font-size: 0.9rem;
-      font-weight: bold;
-    }
-
-    input {
-      color: white;
-      font-family: inherit;
-      background: none;
-      outline: 0;
-      border: 0;
-      padding: 0;
-      margin: 0;
-    }
+  p {
+    font-size: 0.9rem;
+    font-weight: 700;
   }
 }

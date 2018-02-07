@@ -1,8 +1,7 @@
 import { h, Component } from 'preact'
 import { route } from 'preact-router'
 
-import Header from '../../components/Header'
-import Footer from '../../components/Footer'
+import Page from '../../components/Page'
 
 import style from './style'
 
@@ -29,9 +28,8 @@ export default class Home extends Component {
 
   render () {
     return (
-      <div className={style.home}>
-        <Header />
-        <div className={style.feature}>
+      <Page>
+        <div className={style.home}>
           <div className={style.cta}>
             <h3>Welcome to streamit.</h3>
             <p>Stream video content from your favorite subreddits.</p>
@@ -54,8 +52,7 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
-        <Footer />
-      </div>
+      </Page>
     )
   }
 }
