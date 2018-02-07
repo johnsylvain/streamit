@@ -37,7 +37,8 @@
   input {
     background: #1D2235;
     border: 0;
-    border-bottom: 2px solid transparentize(#ffc600, 0.8);
+    border-bottom: 2px solid transparent;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     outline: 0;
     font-size: 1rem;
     color: white;
@@ -46,8 +47,7 @@
     width: 400px;
 
     &:focus {
-      border-bottom: 2px solid transparentize(#f5cd79, 0);
-      background: lighten(#1D2235, 1%);
+      border-bottom: 2px solid #f5cd79;
     }
   }
 

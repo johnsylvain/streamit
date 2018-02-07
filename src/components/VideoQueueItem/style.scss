@@ -2,12 +2,15 @@
   cursor: pointer;
   font-size: 0.8rem;
   display: grid;
-  grid-template-columns: 20px 80px 1fr;
-  grid-gap: 8px;
+  grid-template-columns: 20px 90px 1fr;
+  grid-gap: 10px;
   padding: 5px;
+  transition: 0.2s ease;
 
   img {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
     width: 100%;
+    transition: 0.2s ease;
   }
 
   &:hover {
@@ -26,8 +29,18 @@
     font-weight: bold;
     margin-bottom: 8px;
   }
+}
 
-  .active {
+.active {
+  .details p:first-child {
     color: #f5cd79;
   }
+
+  img {
+    box-shadow: 0 4px 15px -4px rgba(darken(#1A2030, 15%), 0.7);
+    transform: scale(1.05);
+  }
+
+  padding: 20px 5px;
+  background: #1A2030;
 }
