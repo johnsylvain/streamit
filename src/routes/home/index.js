@@ -1,21 +1,12 @@
 import { h, Component } from 'preact'
 import { route } from 'preact-router'
+import { connect } from 'unistore/preact'
 
 import Page from '../../components/Page'
 
 import style from './style'
 
-export default class Home extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      popular: [
-        'videos', 'movies', 'television', 'documentaries', 'holdmybeer', 'nononono'
-      ]
-    }
-  }
-
+class Home extends Component {
   changeRoute = (channel) => {
     route(`/r/${channel}`, false)
   }
@@ -44,7 +35,7 @@ export default class Home extends Component {
           <div>
             <h4>Popular</h4>
             <div className={style.grid}>
-              {this.state.popular.map(channel =>
+              {this.props.popular.map(channel =>
                 <div onClick={() => this.changeRoute(channel)} className={style.channel}>
                   <span>{channel}</span>
                 </div>
@@ -56,3 +47,7 @@ export default class Home extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({ popular: state.popular })
+)(Home)

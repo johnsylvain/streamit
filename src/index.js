@@ -1,5 +1,7 @@
 import { h, Component } from 'preact'
 import { Router } from 'preact-router'
+import createStore from 'unistore'
+import { Provider } from 'unistore/preact'
 
 import './style';
 import Player from './routes/player'
@@ -11,17 +13,28 @@ if (module.hot) {
   require('preact/debug')
 }
 
+let store = createStore({
+  videos: [],
+  pointer: 0,
+  loading: true,
+  popular: [
+    'videos', 'movies', 'television', 'documentaries', 'holdmybeer', 'nononono'
+  ]
+})
+
 export default class App extends Component {
   render() {
     return (
-      <div id="app">
-        <Router>
-          <Home path="/" />
-          <Player path="/r/:subreddit" defaultSubreddit="videos"/>
-          <Redirect path="/r" to="/r/videos" />
-          <NotFound path="/404" />
-        </Router>
-      </div>
+      <Provider store={store}>
+        <div id="app">
+          <Router>
+            <Home path="/" />
+            <Player path="/r/:subreddit" defaultSubreddit="videos"/>
+            <Redirect path="/r" to="/r/videos" />
+            <NotFound path="/404" />
+          </Router>
+        </div>
+      </Provider>
     )
   }
 }

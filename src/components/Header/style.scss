@@ -7,11 +7,16 @@
     font-size: 1rem;
     text-transform: uppercase;
     background-color: #f5cd79;
-    padding: 5px 8px;
     color: #151A2D;
     margin-right: 1rem;
     font-weight: 700;
-    cursor: pointer;
+    
+    a {
+      padding: 5px 8px;
+      color: inherit;
+      text-decoration: none;
+      display: block;
+    }
   }
 
   p {

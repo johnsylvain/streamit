@@ -16,10 +16,10 @@ export default class VideoQueue extends Component {
           </div>
           <div>
             <button
-              onClick={this.props.handleClick('prev')}
+              onClick={this.props.previous}
               disabled={this.props.pointer === 0}>❮</button>
             <button
-              onClick={this.props.handleClick('next')}
+              onClick={this.props.next}
               disabled={this.props.pointer === this.props.videos.length - 1}>❯</button>
           </div>
         </div>
