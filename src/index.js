@@ -16,10 +16,10 @@ export default class App extends Component {
     return (
       <div id="app">
         <Router>
-          <Redirect path="/r" to="/r/videos" />
-          <NotFound path="/404" />
           <Home path="/" />
           <Player path="/r/:subreddit" defaultSubreddit="videos"/>
+          <Redirect path="/r" to="/r/videos" />
+          <NotFound path="/404" />
         </Router>
       </div>
     )
