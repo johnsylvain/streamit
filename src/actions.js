@@ -20,15 +20,16 @@ export default store => ({
     store.setState({
       loading: true
     })
-    
-    const baseUrl = `https://www.reddit.com/r/${subreddit}/`
-    fetch(`${baseUrl}hot.json?limit=100&after=`)
+
+    fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=300`)
       .then(res => res.json())
       .then(json => {
         const videos = json.data.children
-          .filter(c => !c.data.stickied)
-          .filter(c => !c.data.over_18)
-          .filter(c => c.data.post_hint === 'rich:video')
+          .filter(v => 
+            !v.data.stickied && 
+            !v.data.over_18 && 
+            v.data.post_hint === 'rich:video'
+          )
           .map((item, i) => ({
             meta: {
               author: item.data.author,
