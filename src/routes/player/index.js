@@ -11,13 +11,12 @@ import Page from '../../components/Page'
 
 class Player extends Component {
   componentWillMount () {
-    const { subreddit, defaultSubreddit } = this.props
-    this.props.getVideos(subreddit || defaultSubreddit)
+    this.props.getVideos(this.props.subreddit)
   }
 
-  render ({ subreddit }, { defaultSubreddit }) {
+  render ({ subreddit }) {
     return (
-      <Page subreddit={subreddit || defaultSubreddit}>
+      <Page subreddit={subreddit}>
         {this.props.loading
           ? (
             <div className={style.interstitial}>
@@ -29,10 +28,14 @@ class Player extends Component {
               <VideoPlayer video={this.props.videos[this.props.pointer]} />
               <VideoQueue
                 {...this.props}
-                subreddit={subreddit || defaultSubreddit}
-                handleClick={(p) => () => this.props.changeVideo(p)}
+                subreddit={subreddit}
+                changeVideo={this.props.changeVideo}
                 next={this.props.nextVideo}
-                previous={this.props.previousVideo}/>
+                previous={this.props.previousVideo}>
+                {this.props.videos.map(video =>
+                  <VideoQueue.Item video={video}/>
+                )}
+              </VideoQueue>
             </div>
           )
         }

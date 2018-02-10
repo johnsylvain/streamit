@@ -18,7 +18,8 @@ let store = createStore({
   pointer: 0,
   loading: true,
   popular: [
-    'videos', 'movies', 'television', 'documentaries', 'holdmybeer', 'nononono'
+    'videos', 'movies', 'television',
+    'documentaries', 'holdmybeer', 'foodvideos'
   ]
 })
 
@@ -29,7 +30,7 @@ export default class App extends Component {
         <div id="app">
           <Router>
             <Home path="/" />
-            <Player path="/r/:subreddit" defaultSubreddit="videos"/>
+            <Player path="/r/:subreddit"/>
             <Redirect path="/r" to="/r/videos" />
             <NotFound path="/404" />
           </Router>

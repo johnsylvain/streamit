@@ -50,3 +50,50 @@
     overflow-y: scroll;
   }
 }
+
+.item {
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: grid;
+  grid-template-columns: 20px 90px 1fr;
+  grid-gap: 10px;
+  padding: 5px;
+  transition: 0.2s ease;
+
+  img {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    transition: 0.2s ease;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  div:first-child {
+    justify-self: center;
+    align-self: center;
+  }
+}
+
+.details {
+  padding: 5px 0;
+  p:first-child {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+}
+
+.active {
+  .details p:first-child {
+    color: #f5cd79;
+  }
+
+  img {
+    box-shadow: 0 4px 16px -4px rgba(darken(#1A2030, 18%), 0.8);
+    transform: scale(1.08);
+  }
+
+  padding: 20px 5px;
+  background: #1A2030;
+}
