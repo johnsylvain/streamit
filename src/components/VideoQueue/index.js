@@ -4,13 +4,15 @@ import ProgressBar from '../ProgressBar'
 import style from './style'
 import { truncate } from '../../lib/helpers'
 
-const VideoQueueItem = ({ active, index, handleClick, video}) => (
+const VideoQueueItem = ({ isActive, index, handleClick, video }) => (
   <div className={[
-    style.item,
-    (active) ? style.active : null
-  ].join(' ')} onClick={handleClick}>
+      style.item,
+      (isActive) ? style.active : null
+    ].join(' ')}
+    onClick={handleClick}
+  >
     <div>
-      {(active) ? '▶' : index}
+      {(isActive) ? '▶' : index}
     </div>
     <div className={style.background}>
       <img src={video.media.thumbnail || '/assets/placeholder.svg'}/>
@@ -26,19 +28,13 @@ export default class VideoQueue extends Component {
   static Item = VideoQueueItem
 
   render () {
-    const children = this.props.children.map((child, index) => {
-      switch (child.nodeName.name) {
-        case 'VideoQueueItem':
-          return cloneElement(child, {
-            handleClick: () => this.props.changeVideo(index),
-            active: index === this.props.pointer,
-            index
-          })
-
-        default:
-          return child
-      }
-    })
+    const children = this.props.children.map((child, index) =>
+      cloneElement(child, {
+        handleClick: () => this.props.changeVideo(index),
+        isActive: index === this.props.pointer,
+        index: index + 1
+      })
+    )
 
     return (
       <div className={style.queue}>
