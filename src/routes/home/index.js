@@ -7,19 +7,15 @@ import Page from '../../components/Page'
 import style from './style'
 
 class Home extends Component {
-  changeRoute = (channel) => {
-    route(`/r/${channel}`, false)
-  }
-
   handleSubmit = (e) => {
     e.preventDefault()
-
-    this.changeRoute(e.target.subreddit.value)
+    route(`/r/${e.target.subreddit.value}`, false)
   }
 
   render () {
     return (
       <Page>
+        <Page.Header />
         <div className={style.home}>
           <div className={style.cta}>
             <h3>Welcome to streamit.</h3>
@@ -36,13 +32,14 @@ class Home extends Component {
             <h4>Popular</h4>
             <div className={style.grid}>
               {this.props.popular.map(channel =>
-                <div onClick={() => this.changeRoute(channel)} className={style.channel}>
+                <a href={`/r/${channel}`} className={style.channel}>
                   <span>{channel}</span>
-                </div>
+                </a>
               )}
             </div>
           </div>
         </div>
+        <Page.Footer />
       </Page>
     )
   }

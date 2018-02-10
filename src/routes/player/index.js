@@ -14,31 +14,40 @@ class Player extends Component {
     this.props.getVideos(this.props.subreddit)
   }
 
-  render ({ subreddit }) {
+  render () {
+    const { 
+      videos, pointer, subreddit, loading,
+      changeVideo, nextVideo, previousVideo
+    } = this.props
+
+    const content = loading
+      ? (
+        <div className={style.interstitial}>
+          <Loader />
+        </div>
+      )
+      : (
+        <div className={style.grid}>
+          <VideoPlayer video={videos[pointer]} />
+          <VideoQueue
+            subreddit={subreddit}
+            changeVideo={changeVideo}
+            next={nextVideo}
+            previous={previousVideo}
+            {...this.props}
+          >
+            {videos.map(video =>
+              <VideoQueue.Item video={video}/>
+            )}
+          </VideoQueue>
+        </div>
+      )
+
     return (
-      <Page subreddit={subreddit}>
-        {this.props.loading
-          ? (
-            <div className={style.interstitial}>
-              <Loader />
-            </div>
-          )
-          : (
-            <div className={style.grid}>
-              <VideoPlayer video={this.props.videos[this.props.pointer]} />
-              <VideoQueue
-                {...this.props}
-                subreddit={subreddit}
-                changeVideo={this.props.changeVideo}
-                next={this.props.nextVideo}
-                previous={this.props.previousVideo}>
-                {this.props.videos.map(video =>
-                  <VideoQueue.Item video={video}/>
-                )}
-              </VideoQueue>
-            </div>
-          )
-        }
+      <Page>
+        <Page.Header subreddit={subreddit}/>
+        {content}
+        <Page.Footer />
       </Page>
     )
   }

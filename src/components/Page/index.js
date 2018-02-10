@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { h, Component, cloneElement } from 'preact'
 
 import Header from '../Header'
 import Footer from '../Footer'
@@ -6,15 +6,14 @@ import Footer from '../Footer'
 import style from './style'
 
 export default class Page extends Component {
-    render () {
-        return (
-            <div className={style.page}>
-                <Header subreddit={this.props.subreddit} />
-                <div>
-                    {this.props.children}
-                </div>
-                <Footer />
-            </div>
-        )
-    }
+  static Header = Header
+  static Footer = Footer
+
+  render () {
+    return (
+      <div className={style.page}>
+        {this.props.children}
+      </div>
+    )
+  }
 }

@@ -4,20 +4,20 @@ import ProgressBar from '../ProgressBar'
 import style from './style'
 import { truncate } from '../../lib/helpers'
 
-const VideoQueueItem = (props) => (
+const VideoQueueItem = ({ active, index, handleClick, video}) => (
   <div className={[
     style.item,
-    (props.active) ? style.active : null
-  ].join(' ')} onClick={props.handleClick}>
+    (active) ? style.active : null
+  ].join(' ')} onClick={handleClick}>
     <div>
-      {props.active ? '▶' : props.index}
+      {(active) ? '▶' : index}
     </div>
     <div className={style.background}>
-      <img src={props.video.media.thumbnail || '/assets/placeholder.svg'}/>
+      <img src={video.media.thumbnail || '/assets/placeholder.svg'}/>
     </div>
     <div className={style.details}>
-      <p>{truncate(props.video.meta.title, 35)}</p>
-      <p>{props.video.meta.author}</p>
+      <p>{truncate(video.meta.title, 35)}</p>
+      <p>{video.meta.author}</p>
     </div>
   </div>
 )
@@ -26,13 +26,19 @@ export default class VideoQueue extends Component {
   static Item = VideoQueueItem
 
   render () {
-    const children = this.props.children.map((child, index) =>
-      cloneElement(child, {
-        handleClick: () => this.props.changeVideo(index),
-        active: index === this.props.pointer,
-        index
-      })
-    )
+    const children = this.props.children.map((child, index) => {
+      switch (child.nodeName.name) {
+        case 'VideoQueueItem':
+          return cloneElement(child, {
+            handleClick: () => this.props.changeVideo(index),
+            active: index === this.props.pointer,
+            index
+          })
+
+        default:
+          return child
+      }
+    })
 
     return (
       <div className={style.queue}>
