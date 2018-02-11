@@ -7,13 +7,13 @@
     overflow: hidden;
 
     &:after {
-      margin-left: 24px;
+      margin-left: 18px;
       content: '';
       display: inline-block;
       vertical-align: middle;
-      width: 100%;
+      width: 80%;
       height: 2px;
-      background: linear-gradient(to right, rgba(#555,0.3), transparent 80%);
+      background: linear-gradient(to right, rgba(#ffffff, 0.15), transparent 80%);
     }
   }
 }
@@ -35,7 +35,7 @@
 
 .form {
   input {
-    background: #1D2235;
+    background: linear-gradient(to bottom, #1D2235, darken(#1D2235, 1));
     border: 0;
     border-bottom: 2px solid transparent;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -79,7 +79,8 @@
 
 .channel {
   cursor: pointer;
-  background: #1D2235;
+  background: linear-gradient(to bottom, #1D2235, darken(#1D2235, 1));
+  border-radius: 2px;
   padding: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -107,6 +108,6 @@
 
   &:hover {
     transform: scale(1.02);
-    background: lighten(#1D2235, 3%);
+    background: linear-gradient(to bottom, #1D2235, #1D2235);
   }
 }

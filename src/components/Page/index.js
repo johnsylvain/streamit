@@ -1,4 +1,4 @@
-import { h, Component, cloneElement } from 'preact'
+import { h, Component } from 'preact'
 
 import Header from '../Header'
 import Footer from '../Footer'
