@@ -1,6 +1,6 @@
 .player {
-  background-color: #1D2235;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to bottom, #32363A, #2D2F33);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .detail {
@@ -35,7 +35,7 @@
       right: 0;
       width: 30%;
       height: 100%;
-      background: linear-gradient(to right, rgba(#1D2235,0) 0%, #1D2235 80%, #1D2235 100%);
+      background: linear-gradient(to right, rgba(#2D2F33,0) 0%, #2D2F33 80%, #2D2F33 100%);
       pointer-events: none;
     }
 
@@ -65,7 +65,7 @@
 	padding-bottom: 56.25%;
 	padding-top: 25px;
   height: 0;
-  background: rgb(39, 45, 70);
+  background: #32363A;
 
   iframe {
     position: absolute;

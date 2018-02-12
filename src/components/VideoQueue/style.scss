@@ -1,6 +1,6 @@
 .queue {
-  background-color: #1D2235;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  background-color: #32363A;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -8,7 +8,7 @@
 
 .header {
   padding: 20px;
-  background: linear-gradient(to bottom, #1A2030, darken(#1A2030, 2));
+  background: linear-gradient(to bottom, #32363A, #2D2F33);
   line-height: 130%;
   display: flex;
   justify-content: space-between;
@@ -95,5 +95,5 @@
   }
 
   padding: 20px 5px;
-  background: #1A2030;
+  background: #2D2F33;
 }
