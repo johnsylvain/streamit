@@ -18,7 +18,7 @@ class Home extends Component {
         <Page.Header />
         <div className={style.home}>
           <div className={style.cta}>
-            <h3>Welcome to streamit.</h3>
+            <h3>Welcome to <strong>streamit</strong>.</h3>
             <p>Stream video content from your favorite subreddits.</p>
             <form className={style.form} onSubmit={this.handleSubmit}>
               <input

@@ -1,5 +1,5 @@
 .player {
-  background: linear-gradient(to bottom, #32363A, #2D2F33);
+  background: rgba(white, 0.05);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -28,17 +28,6 @@
       text-decoration: none;
     }
 
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 30%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(#2D2F33,0) 0%, #2D2F33 80%, #2D2F33 100%);
-      pointer-events: none;
-    }
-
     &:hover {
       overflow: auto;
       white-space: inherit;
@@ -65,7 +54,7 @@
 	padding-bottom: 56.25%;
 	padding-top: 25px;
   height: 0;
-  background: #32363A;
+  background: rgba(white, 0.05);
 
   iframe {
     position: absolute;
