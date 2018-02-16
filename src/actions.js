@@ -23,8 +23,8 @@ export default store => ({
 
     const json = await (await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=300`)).json()
 
-    if (!json) {
-      route('/404', false)
+    if (json.error === 404) {
+      return route('/404', false)
     }
 
     const videos = json.data.children
