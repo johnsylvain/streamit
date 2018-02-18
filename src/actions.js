@@ -21,7 +21,8 @@ export default store => ({
       loading: true
     })
 
-    const json = await (await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=300`)).json()
+    const response = await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=100`)
+    const json = await response.json()
 
     if (json.error === 404) {
       return route('/404', false)

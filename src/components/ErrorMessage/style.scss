@@ -1,0 +1,17 @@
+.error {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  .emoji {
+    font-size: 3rem;
+  }
+
+  h2 {
+    margin-top: 10px;
+    strong {
+      font-weight: bold;
+    }
+  }
+}

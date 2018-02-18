@@ -32,7 +32,7 @@ export default class App extends Component {
             <Home path="/" />
             <Player path="/r/:subreddit"/>
             <Redirect path="/r" to="/r/videos" />
-            <NotFound path="/404" />
+            <NotFound path="/404" emoji="&#x1F480;" text="Subreddit not found" code="404"/>
           </Router>
         </div>
       </Provider>

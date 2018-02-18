@@ -1,15 +1,13 @@
 import { h } from 'preact'
 import style from './style'
 
+import ErrorMessage from '../../components/ErrorMessage'
 import Page from '../../components/Page'
 
-const NotFound = () =>
+const NotFound = (props) =>
   <Page>
     <Page.Header />
-    <div className={style.notfound}>
-      <div className={style.emoji}>&#x1F480;</div>
-      <h2><strong>404:</strong> Subreddit not found</h2>
-    </div>
+    <ErrorMessage {...props}/>
     <Page.Footer />
   </Page>
 

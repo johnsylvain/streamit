@@ -8,6 +8,7 @@ import VideoPlayer from '../../components/VideoPlayer'
 import VideoQueue from '../../components/VideoQueue'
 import Loader from '../../components/Loader'
 import Page from '../../components/Page'
+import ErrorMessage from '../../components/ErrorMessage'
 
 class Player extends Component {
   componentWillMount () {
@@ -20,33 +21,40 @@ class Player extends Component {
       changeVideo, nextVideo, previousVideo
     } = this.props
 
-    const content = loading
-      ? (
-        <div className={style.interstitial}>
-          <Loader />
-        </div>
-      )
-      : (
-        <div className={style.grid}>
-          <VideoPlayer video={videos[pointer]} />
-          <VideoQueue
-            subreddit={subreddit}
-            changeVideo={changeVideo}
-            next={nextVideo}
-            previous={previousVideo}
-            {...this.props}
-          >
-            {videos.map(video =>
-              <VideoQueue.Item video={video}/>
-            )}
-          </VideoQueue>
-        </div>
-      )
+    const player = (
+      <div className={style.grid}>
+        <VideoPlayer video={videos[pointer]} />
+        <VideoQueue
+          subreddit={subreddit}
+          changeVideo={changeVideo}
+          next={nextVideo}
+          previous={previousVideo}
+          {...this.props}
+        >
+          {videos.map(video =>
+            <VideoQueue.Item video={video}/>
+          )}
+        </VideoQueue>
+      </div>
+    )
+
+    const error = (
+      <ErrorMessage emoji="&#x1F914;" text="No video content found"/>
+    )
+
+    const loader = (
+      <div className={style.interstitial}>
+        <Loader />
+      </div>
+    )
 
     return (
       <Page>
         <Page.Header subreddit={subreddit}/>
-        {content}
+        {(loading)
+          ? loader
+          : (videos.length) ? player : error
+        }
         <Page.Footer />
       </Page>
     )
