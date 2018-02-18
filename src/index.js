@@ -15,6 +15,7 @@ if (module.hot) {
 
 let store = createStore({
   videos: [],
+  error: {},
   pointer: 0,
   loading: true,
   popular: [

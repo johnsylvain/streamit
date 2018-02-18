@@ -1,9 +1,11 @@
 import { h } from 'preact'
 import style from './style'
 
-const ErrorMessage = ({ emoji, text, code }) =>
+const ErrorMessage = ({ symbol, text, code }) =>
   <div className={style.error}>
-    <div className={style.emoji}>{emoji}</div>
+    <div
+      className={style.symbol}
+      dangerouslySetInnerHTML={{ __html: symbol }} />
     <h2>
       {code && <strong>{code}:&nbsp;</strong>}
       {text}

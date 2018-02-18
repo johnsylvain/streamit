@@ -17,7 +17,7 @@ class Player extends Component {
 
   render () {
     const { 
-      videos, pointer, subreddit, loading,
+      videos, pointer, subreddit, loading, error,
       changeVideo, nextVideo, previousVideo
     } = this.props
 
@@ -38,23 +38,20 @@ class Player extends Component {
       </div>
     )
 
-    const error = (
-      <ErrorMessage emoji="&#x1F914;" text="No video content found"/>
-    )
-
     const loader = (
       <div className={style.interstitial}>
         <Loader />
       </div>
     )
 
+    const content = (error.message)
+      ? <ErrorMessage symbol={error.symbol} text={error.message}/>
+      : (loading) ? loader : player
+
     return (
       <Page>
         <Page.Header subreddit={subreddit}/>
-        {(loading)
-          ? loader
-          : (videos.length) ? player : error
-        }
+        {content}
         <Page.Footer />
       </Page>
     )
@@ -65,7 +62,8 @@ export default connect(
   state => ({
     videos: state.videos,
     pointer: state.pointer,
-    loading: state.loading
+    loading: state.loading,
+    error: state.error
   }),
   actions
 )(Player)

@@ -18,7 +18,8 @@ export default store => ({
 
   async getVideos (state, subreddit) {
     store.setState({
-      loading: true
+      loading: true,
+      error: {}
     })
 
     const response = await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=100`)
@@ -52,7 +53,13 @@ export default store => ({
     store.setState({
       videos,
       pointer: 0,
-      loading: false
+      loading: false,
+      error: videos.length
+        ? {}
+        : {
+          symbol: '&#x1F914;',
+          message: 'No video content found'
+        }
     })
   }
 })
