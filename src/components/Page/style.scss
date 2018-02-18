@@ -1,9 +1,42 @@
 .page {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
-    > div {
-        flex: 1;
+  > div {
+    flex: 1;
+  }
+}
+
+.header {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #f5cd79, darken(#f5cd79, 7%));
+    color: #1E1F21;
+    margin-right: 1rem;
+    font-weight: 700;
+    
+    a {
+      padding: 5px 8px;
+      color: inherit;
+      text-decoration: none;
+      display: block;
     }
+  }
+
+  p {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+}
+
+.footer {
+  font-size: 0.8rem;
+  padding: 30px 0;
+  opacity: 0.5;
 }
