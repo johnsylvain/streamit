@@ -19,7 +19,7 @@ let store = createStore({
   error: {},
   pointer: 0,
   loading: true,
-  recent: storage.get('recent'),
+  recent: storage.get('recent') || [],
   popular: [
     'videos',
     'movies',

@@ -53,14 +53,15 @@ class Home extends Component {
               />
             </form>
           </div>
-          {!!this.props.recent.length && (
-            <Featured
-              name="Recent"
-              channels={this.props.recent}
-              handleClick={this.props.removeRecentChannel}
-              isEditable
-            />
-          )}
+          {typeof window !== 'undefined' &&
+            !!this.props.recent.length && (
+              <Featured
+                name="Recent"
+                channels={this.props.recent}
+                handleClick={this.props.removeRecentChannel}
+                isEditable
+              />
+            )}
           <Featured name="Popular" channels={this.props.popular} />
         </div>
         <Page.Footer />
