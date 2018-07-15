@@ -1,16 +1,16 @@
-import { h, Component } from 'preact'
-import { Router } from 'preact-router'
-import createStore from 'unistore'
-import { Provider } from 'unistore/preact'
+import { h, Component } from 'preact';
+import { Router } from 'preact-router';
+import createStore from 'unistore';
+import { Provider } from 'unistore/preact';
 
 import './style';
-import Player from './routes/player'
-import Home from './routes/home'
-import NotFound from './routes/404'
-import Redirect from './components/Redirect'
+import Player from './routes/player';
+import Home from './routes/home';
+import NotFound from './routes/404';
+import Redirect from './components/Redirect';
 
 if (module.hot) {
-  require('preact/debug')
+  require('preact/debug');
 }
 
 let store = createStore({
@@ -18,11 +18,16 @@ let store = createStore({
   error: {},
   pointer: 0,
   loading: true,
+  recent: [],
   popular: [
-    'videos', 'movies', 'television',
-    'documentaries', 'holdmybeer', 'foodvideos'
+    'videos',
+    'movies',
+    'television',
+    'documentaries',
+    'holdmybeer',
+    'foodvideos'
   ]
-})
+});
 
 export default class App extends Component {
   render() {
@@ -31,12 +36,17 @@ export default class App extends Component {
         <div id="app">
           <Router>
             <Home path="/" />
-            <Player path="/r/:subreddit"/>
+            <Player path="/r/:subreddit" />
             <Redirect path="/r" to="/r/videos" />
-            <NotFound path="/404" emoji="&#x1F480;" text="Subreddit not found" code="404"/>
+            <NotFound
+              path="/404"
+              emoji="&#x1F480;"
+              text="Subreddit not found"
+              code="404"
+            />
           </Router>
         </div>
       </Provider>
-    )
+    );
   }
 }

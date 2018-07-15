@@ -1,39 +1,39 @@
-import { route } from 'preact-router'
-import { unEntity } from './lib/helpers'
+import { route } from 'preact-router';
+import { unEntity } from './lib/helpers';
 
 export default store => ({
   changeVideo: (state, pointer) => ({ pointer }),
 
-  nextVideo: (state) => ({
-    pointer: (state.pointer < state.videos.length)
-      ? state.pointer + 1
-      : state.pointer
+  nextVideo: state => ({
+    pointer:
+      state.pointer < state.videos.length ? state.pointer + 1 : state.pointer
   }),
 
-  previousVideo: (state) => ({
-    pointer: (state.pointer > 0)
-      ? state.pointer - 1
-      : 0
+  previousVideo: state => ({
+    pointer: state.pointer > 0 ? state.pointer - 1 : 0
   }),
 
-  async getVideos (state, subreddit) {
+  async getVideos(state, subreddit) {
     store.setState({
       loading: true,
       error: {}
-    })
+    });
 
-    const response = await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=100`)
-    const json = await response.json()
+    const response = await fetch(
+      `https://www.reddit.com/r/${subreddit}/hot.json?limit=100`
+    );
+    const json = await response.json();
 
     if (json.error === 404) {
-      return route('/404', false)
+      return route('/404', false);
     }
 
     const videos = json.data.children
-      .filter(v =>
-        !v.data.stickied &&
-        !v.data.over_18 &&
-        v.data.post_hint === 'rich:video'
+      .filter(
+        v =>
+          !v.data.stickied &&
+          !v.data.over_18 &&
+          v.data.post_hint === 'rich:video'
       )
       .map((item, i) => ({
         meta: {
@@ -48,7 +48,7 @@ export default store => ({
           iframe: unEntity(item.data.media_embed.content || ''),
           thumbnail: item.data.thumbnail
         }
-      }))
+      }));
 
     store.setState({
       videos,
@@ -57,9 +57,9 @@ export default store => ({
       error: videos.length
         ? {}
         : {
-          symbol: '&#x1F914;',
-          message: 'No video content found'
-        }
-    })
+            symbol: '&#x1F914;',
+            message: 'No video content found'
+          }
+    });
   }
-})
+});

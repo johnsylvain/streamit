@@ -1,14 +1,14 @@
-import { h } from 'preact'
-import style from './style'
+import { h } from 'preact';
 
-import ErrorMessage from '../../components/ErrorMessage'
-import Page from '../../components/Page'
+import ErrorMessage from '../../components/ErrorMessage';
+import Page from '../../components/Page';
 
-const NotFound = (props) =>
+const NotFound = props => (
   <Page>
     <Page.Header />
-    <ErrorMessage {...props}/>
+    <ErrorMessage {...props} />
     <Page.Footer />
   </Page>
+);
 
-export default NotFound
+export default NotFound;
