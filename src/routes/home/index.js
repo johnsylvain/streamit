@@ -5,15 +5,26 @@ import { connect } from 'unistore/preact';
 import Page from '../../components/Page';
 
 import style from './style';
+import actions from '../../actions';
 
-const Featured = ({ name, channels }) => (
-  <div>
+const Featured = ({ name, channels, isEditable, handleClick }) => (
+  <div className={style.featured}>
     <h4>{name}</h4>
     <div className={style.grid}>
       {channels.map(channel => (
-        <a href={`/r/${channel}`} className={style.channel}>
-          <span>{channel}</span>
-        </a>
+        <div className={style.channel}>
+          <a href={`/r/${channel}`} className={style.channelName}>
+            <span>{channel}</span>
+          </a>
+          {isEditable && (
+            <span
+              className={style.channelAction}
+              onClick={() => handleClick(channel)}
+            >
+              &times;
+            </span>
+          )}
+        </div>
       ))}
     </div>
   </div>
@@ -31,9 +42,7 @@ class Home extends Component {
         <Page.Header />
         <div className={style.home}>
           <div className={style.cta}>
-            <h3>
-              Welcome to <strong>streamit</strong>.
-            </h3>
+            <h3>Welcome to streamit.</h3>
             <p>Stream video content from your favorite subreddits.</p>
             <form className={style.form} onSubmit={this.handleSubmit}>
               <input
@@ -44,6 +53,14 @@ class Home extends Component {
               />
             </form>
           </div>
+          {!!this.props.recent.length && (
+            <Featured
+              name="Recent"
+              channels={this.props.recent}
+              handleClick={this.props.removeRecentChannel}
+              isEditable
+            />
+          )}
           <Featured name="Popular" channels={this.props.popular} />
         </div>
         <Page.Footer />
@@ -52,4 +69,10 @@ class Home extends Component {
   }
 }
 
-export default connect(state => ({ popular: state.popular }))(Home);
+export default connect(
+  state => ({
+    popular: state.popular,
+    recent: state.recent
+  }),
+  actions
+)(Home);

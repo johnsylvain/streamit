@@ -33,6 +33,7 @@
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
     "preact-router": "^2.5.7",
+    "store": "^2.0.12",
     "twas": "^2.0.0",
     "unistore": "^3.0.4"
   },

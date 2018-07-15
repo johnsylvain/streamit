@@ -13,6 +13,13 @@ export default store => ({
     pointer: state.pointer > 0 ? state.pointer - 1 : 0
   }),
 
+  removeRecentChannel: (state, channel) => ({
+    recent: [
+      ...state.recent.splice(0, state.recent.indexOf(channel)),
+      ...state.recent.splice(state.recent.indexOf(channel) + 1)
+    ]
+  }),
+
   async getVideos(state, subreddit) {
     store.setState({
       loading: true,
@@ -54,6 +61,10 @@ export default store => ({
       videos,
       pointer: 0,
       loading: false,
+      recent:
+        state.recent.indexOf(subreddit) === -1
+          ? [subreddit].concat(state.recent).splice(0, 5)
+          : state.recent,
       error: videos.length
         ? {}
         : {

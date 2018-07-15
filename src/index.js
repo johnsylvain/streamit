@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import createStore from 'unistore';
 import { Provider } from 'unistore/preact';
+import storage from 'store';
 
 import './style';
 import Player from './routes/player';
@@ -18,7 +19,7 @@ let store = createStore({
   error: {},
   pointer: 0,
   loading: true,
-  recent: [],
+  recent: storage.get('recent'),
   popular: [
     'videos',
     'movies',
@@ -28,6 +29,8 @@ let store = createStore({
     'foodvideos'
   ]
 });
+
+store.subscribe(state => storage.set('recent', state.recent));
 
 export default class App extends Component {
   render() {
