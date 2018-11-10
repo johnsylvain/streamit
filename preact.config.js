@@ -5,12 +5,6 @@ export default (config, env, helpers) => {
     .options;
   html.title = 'Streamit';
 
-  // html.template = 'index.html';
-  // html.googleAnalytics = {
-  //   trackingId: 'UA-60696638-6',
-  //   pageViewOnLoad: true
-  // };
-
   babel.presets[0][1].exclude.push(
     'transform-async-to-generator',
     'transform-regenerator'
