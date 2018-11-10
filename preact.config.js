@@ -3,13 +3,13 @@ export default (config, env, helpers) => {
   let uglify = helpers.getPluginsByName(config, 'UglifyJsPlugin')[0];
   let html = helpers.getPluginsByName(config, 'HtmlWebpackPlugin')[0].plugin
     .options;
-
-  html.template = require('html-webpack-template');
   html.title = 'Streamit';
-  html.googleAnalytics = {
-    trackingId: 'UA-60696638-6',
-    pageViewOnLoad: true
-  };
+
+  // html.template = 'index.html';
+  // html.googleAnalytics = {
+  //   trackingId: 'UA-60696638-6',
+  //   pageViewOnLoad: true
+  // };
 
   babel.presets[0][1].exclude.push(
     'transform-async-to-generator',

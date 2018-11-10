@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build",
-    "serve": "preact build && preact serve",
-    "dev": "preact watch",
+    "build": "preact build  --template src/index.html",
+    "serve": "preact build --template src/index.html && preact serve",
+    "dev": "preact watch --template src/index.html",
     "lint": "eslint src",
     "test": "jest ./tests"
   },
@@ -21,7 +21,6 @@
     "babel-plugin-fast-async": "^6.1.2",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
-    "html-webpack-template": "^6.2.0",
     "identity-obj-proxy": "^3.0.0",
     "if-env": "^1.0.0",
     "jest": "^21.2.1",
