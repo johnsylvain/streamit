@@ -21,7 +21,6 @@
     "babel-plugin-fast-async": "^6.1.2",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
-    "html-webpack-template": "^6.2.0",
     "identity-obj-proxy": "^3.0.0",
     "if-env": "^1.0.0",
     "jest": "^21.2.1",
