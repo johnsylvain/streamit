@@ -48,6 +48,7 @@
     top: 0;
     left: 0;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -79,9 +80,18 @@
 
 .details {
   padding: 5px 0;
+
   p:first-child {
     font-weight: bold;
     margin-bottom: 8px;
+  }
+
+  p:nth-child(2) {
+    opacity: 0.6;
+
+    strong {
+      font-weight: 700;
+    }
   }
 }
 
@@ -91,7 +101,7 @@
   }
 
   img {
-    box-shadow: 0 4px 18px -4px rgba(darken(#1A2030, 18%), 0.9);
+    box-shadow: 0 4px 18px -4px rgba(darken(#1a2030, 18%), 0.9);
     transform: scale(1.08);
   }
 

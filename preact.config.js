@@ -9,6 +9,9 @@ export default (config, env, helpers) => {
     trackingId: 'UA-60696638-6',
     pageViewOnLoad: true
   };
+  html.meta = [
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+  ];
 
   babel.presets[0][1].exclude.push(
     'transform-async-to-generator',

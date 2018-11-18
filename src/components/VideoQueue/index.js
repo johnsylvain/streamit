@@ -15,7 +15,9 @@ const VideoQueueItem = ({ isActive, index, handleClick, video }) => (
     </div>
     <div className={style.details}>
       <p>{truncate(video.meta.title, 35)}</p>
-      <p>{video.meta.author}</p>
+      <p>
+        by <strong>{video.meta.author}</strong>
+      </p>
     </div>
   </div>
 );
