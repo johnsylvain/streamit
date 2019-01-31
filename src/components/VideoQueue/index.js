@@ -1,6 +1,6 @@
 import { h, Component, cloneElement } from 'preact';
-
 import ProgressBar from '../ProgressBar';
+import KeyHandler from '../KeyHandler';
 import style from './style';
 import { truncate } from '../../lib/helpers';
 
@@ -36,13 +36,23 @@ export default class VideoQueue extends Component {
 
     return (
       <div className={style.queue}>
+        <KeyHandler
+          keyEventName="keyup"
+          keyCode={37}
+          onKeyHandle={() => this.props.previous()}
+        />
+        <KeyHandler
+          keyEventName="keyup"
+          keyCode={39}
+          onKeyHandle={() => this.props.next()}
+        />
         <div className={style.header}>
           <div>
             <p>Queue</p>
             <small>
               {`/r/${this.props.subreddit} - ${this.props.pointer + 1} / ${
                 this.props.videos.length
-              }`}
+                }`}
             </small>
           </div>
           <div>
