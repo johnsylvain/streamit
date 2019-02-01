@@ -26,7 +26,7 @@ let store = createStore({
     'television',
     'documentaries',
     'holdmybeer',
-    'foodvideos'
+    'youtubehaiku'
   ]
 });
 

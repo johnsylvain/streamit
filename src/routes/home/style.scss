@@ -13,7 +13,11 @@
       vertical-align: middle;
       width: 80%;
       height: 2px;
-      background: linear-gradient(to right, rgba(#ffffff, 0.15), transparent 80%);
+      background: linear-gradient(
+        to right,
+        rgba(#ffffff, 0.15),
+        transparent 80%
+      );
     }
   }
 }
@@ -23,53 +27,84 @@
 }
 
 .cta {
-  margin: 50px 0 80px;
+  margin: 100px 0;
+  text-align: center;
 
   h3 {
-    font-size: 2rem;
+    font-size: 2.3rem;
     margin-bottom: 10px;
     font-weight: 700;
   }
 
   p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 20px;
     opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    text-align: left;
+
+    h3 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
   }
 }
 
 .form {
+  position: relative;
+  max-width: 550px;
+  width: 100%;
+  display: block;
+  margin: 20px auto;
+
   input {
-    background: rgba(white, 0.05);
+    background: white;
     border: 0;
-    border-bottom: 2px solid transparentize(#f5cd79, 0.5);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
     outline: 0;
     font-size: 1rem;
-    color: white;
+    color: #141a1f;
     padding: 20px;
     font-family: inherit;
-    width: 400px;
+    border-radius: 3px;
+    transition: 0.2s ease;
+    width: 100%;
 
     &:focus {
-      border-bottom: 2px solid #f5cd79;
+      box-shadow: 0 7px 20px -4px rgba(0, 0, 0, 0.8);
     }
   }
 
+  svg {
+    fill: #d3d3d3;
+    position: absolute;
+    display: block;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+
   ::-webkit-input-placeholder {
-    color: rgba(white, 0.6);
+    color: #555;
   }
   ::-moz-placeholder {
-    color: rgba(white, 0.6);
+    color: #555;
   }
   :-ms-input-placeholder {
-    color: rgba(white, 0.6);
+    color: #555;
   }
   :-moz-placeholder {
-    color: rgba(white, 0.6);
+    color: #555;
   }
 
   @media (max-width: 768px) {
+    max-width: initial;
+
     input {
       width: 100%;
     }
@@ -84,7 +119,11 @@
 
 .channel {
   cursor: pointer;
-  background: linear-gradient(to bottom, rgba(white, 0.08), rgba(#efefef, 0.08));
+  background: linear-gradient(
+    to bottom,
+    rgba(white, 0.08),
+    rgba(#efefef, 0.08)
+  );
   border-radius: 2px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   display: flex;
